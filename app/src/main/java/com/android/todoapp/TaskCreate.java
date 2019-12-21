@@ -26,9 +26,9 @@ import com.google.android.material.snackbar.Snackbar;
 public class TaskCreate extends AppCompatActivity {
 
     TaskDatabaseHelper dbHelper;
-    String task_name, task_time, task_desc, task_cat;
+    String task_name, task_time, task_desc, task_cat, task_date;
     SQLiteDatabase db;
-    private EditText ed_task, ed_time, ed_desc, ed_cat;
+    private EditText ed_task, ed_time, ed_desc, ed_cat, ed_date;
     private Button bt_add;
 
 
@@ -43,6 +43,7 @@ public class TaskCreate extends AppCompatActivity {
         ed_time = findViewById(R.id.ed_time);
         ed_desc = findViewById(R.id.ed_desc);
         ed_cat = findViewById(R.id.ed_cat);
+        ed_date = findViewById(R.id.ed_date);
         bt_add = findViewById(R.id.bt_add);
 
         ed_cat.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +60,7 @@ public class TaskCreate extends AppCompatActivity {
                 task_name = ed_task.getText().toString();
                 task_time = ed_time.getText().toString();
                 task_desc = ed_desc.getText().toString();
+                task_date = ed_desc.getText().toString();
 
 
                 if (TextUtils.isEmpty(task_name)) {
@@ -81,6 +83,11 @@ public class TaskCreate extends AppCompatActivity {
                     ed_cat.requestFocus();
                     return;
                 }
+                if (TextUtils.isEmpty(task_date)) {
+                    showErrorSnack("Please choose Task date");
+                    ed_date.requestFocus();
+                    return;
+                }
 
 
                 ContentValues values = new ContentValues();
@@ -88,6 +95,7 @@ public class TaskCreate extends AppCompatActivity {
                 values.put(TaskDatabase.COLUMN_NAME_COL2, task_time);
                 values.put(TaskDatabase.COLUMN_NAME_COL3, task_desc);
                 values.put(TaskDatabase.COLUMN_NAME_COL4, task_cat);
+                values.put(TaskDatabase.COLUMN_NAME_COL5, task_date);
                 long rowId = db.insert(TaskDatabase.TABLE_NAME, null, values);
                 if (rowId != -1) {
                     Toast.makeText(TaskCreate.this, "Task Created succesfully", Toast.LENGTH_SHORT).show();

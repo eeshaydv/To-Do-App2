@@ -51,6 +51,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
         holder.task_time.setText(taskDetails.getTime());
         holder.task_desc.setText(taskDetails.getDesc());
         holder.task_cat.setText(taskDetails.getCat());
+        holder.task_date.setText(taskDetails.getDate());
 
         holder.ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +111,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        TextView task_name, task_time, task_desc, task_cat;
+        TextView task_name, task_time, task_desc, task_cat, task_date;
         ImageView ivMenu;
 
         public TaskViewHolder(View itemView) {
@@ -119,6 +120,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
             task_time = itemView.findViewById(R.id.task_time);
             task_desc = itemView.findViewById(R.id.task_desc);
             task_cat = itemView.findViewById(R.id.task_cat);
+            task_date = itemView.findViewById(R.id.task_date);
             ivMenu = itemView.findViewById(R.id.iv_menu);
         }
 

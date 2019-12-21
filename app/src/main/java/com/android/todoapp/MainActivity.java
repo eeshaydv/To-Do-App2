@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 userDetailsItem.setTime(c1.getString(c1.getColumnIndex(TaskDatabaseContract.TaskDatabase.COLUMN_NAME_COL2)));
                 userDetailsItem.setDesc(c1.getString(c1.getColumnIndex(TaskDatabaseContract.TaskDatabase.COLUMN_NAME_COL3)));
                 userDetailsItem.setCat(c1.getString(c1.getColumnIndex(TaskDatabaseContract.TaskDatabase.COLUMN_NAME_COL4)));
+                userDetailsItem.setDate(c1.getString(c1.getColumnIndex(TaskDatabaseContract.TaskDatabase.COLUMN_NAME_COL5)));
                 taskDetailsList.add(userDetailsItem);
 
 

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Address"
+            android:text="Time"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/task_name" />
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="TextView"
+            android:text="description"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/task_time" />
 
@@ -48,9 +48,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="TextView"
+            android:text="Category"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/task_desc" />
+
+        <TextView
+            android:id="@+id/task_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Date"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/task_cat" />
 
         <ImageView
             android:id="@+id/iv_menu"
