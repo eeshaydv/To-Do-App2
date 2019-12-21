@@ -14,6 +14,7 @@ public final class TaskDatabaseContract {
         public static final String COLUMN_NAME_COL2 = "time";
         public static final String COLUMN_NAME_COL3 = "description";
         public static final String COLUMN_NAME_COL4 = "category";
+        public static final String COLUMN_NAME_COL5 = "date";
 
     }
 
