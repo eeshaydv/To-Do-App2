@@ -41,7 +41,6 @@ public class TaskDetails {
     public String getCat() {
         return task_cat;
     }
-
     public void setCat(String task_cat) {
         this.task_cat = task_cat;
     }
@@ -53,5 +52,6 @@ public class TaskDetails {
     public void setDate(String task_date) {
         this.task_date = task_date;
     }
+
 
 }

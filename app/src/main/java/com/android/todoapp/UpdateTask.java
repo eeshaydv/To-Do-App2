@@ -46,7 +46,12 @@ public class UpdateTask extends AppCompatActivity {
         ed_update_time = findViewById(R.id.ed_update_time);
         ed_update_desc = findViewById(R.id.ed_update_desc);
         ed_update_cat = findViewById(R.id.ed_update_cat);
+
         ed_update_date = findViewById(R.id.ed_update_date);
+
+
+
+
         btUpdate = findViewById(R.id.bt_update);
 
         final int rowId = getIntent().getIntExtra("USERID", -1);
@@ -79,8 +84,10 @@ public class UpdateTask extends AppCompatActivity {
             public void onClick(View view) {
                 task_name = ed_update_task.getText().toString();
                 task_time = ed_update_time.getText().toString();
+                task_date = ed_update_desc.getText().toString();
                 task_desc = ed_update_desc.getText().toString();
                 task_date = ed_update_date.getText().toString();
+
 
 
                 if (TextUtils.isEmpty(task_name)) {
@@ -104,7 +111,10 @@ public class UpdateTask extends AppCompatActivity {
                     return;
                 }
                 if (TextUtils.isEmpty(task_date)) {
+
                     showErrorSnack("Please choose Task date");
+
+
                     ed_update_date.requestFocus();
                     return;
                 }
