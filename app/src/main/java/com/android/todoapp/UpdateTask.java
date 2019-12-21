@@ -29,10 +29,10 @@ import java.util.List;
 public class UpdateTask extends AppCompatActivity {
 
     TaskDatabaseHelper dbHelper;
-    EditText ed_update_task, ed_update_time, ed_update_desc, ed_update_cat;
+    EditText ed_update_task, ed_update_time, ed_update_desc, ed_update_cat, ed_update_date;
     Button btUpdate;
     List<TaskDetails> userDetailsList;
-    String task_name, task_time, task_desc, task_cat;
+    String task_name, task_time, task_desc, task_cat, task_date;
     SQLiteDatabase db;
 
 
@@ -46,6 +46,7 @@ public class UpdateTask extends AppCompatActivity {
         ed_update_time = findViewById(R.id.ed_update_time);
         ed_update_desc = findViewById(R.id.ed_update_desc);
         ed_update_cat = findViewById(R.id.ed_update_cat);
+        ed_update_date = findViewById(R.id.ed_update_date);
         btUpdate = findViewById(R.id.bt_update);
 
         final int rowId = getIntent().getIntExtra("USERID", -1);
@@ -62,6 +63,7 @@ public class UpdateTask extends AppCompatActivity {
                 ed_update_time.setText(c1.getString(c1.getColumnIndex(TaskDatabase.COLUMN_NAME_COL2)));
                 ed_update_desc.setText(c1.getString(c1.getColumnIndex(TaskDatabase.COLUMN_NAME_COL3)));
                 ed_update_cat.setText(c1.getString(c1.getColumnIndex(TaskDatabase.COLUMN_NAME_COL4)));
+                ed_update_date.setText(c1.getString(c1.getColumnIndex(TaskDatabase.COLUMN_NAME_COL5)));
 
             }
 
@@ -78,6 +80,8 @@ public class UpdateTask extends AppCompatActivity {
                 task_name = ed_update_task.getText().toString();
                 task_time = ed_update_time.getText().toString();
                 task_desc = ed_update_desc.getText().toString();
+                task_date = ed_update_date.getText().toString();
+
 
                 if (TextUtils.isEmpty(task_name)) {
                     showErrorSnack("Please enter task");
@@ -99,6 +103,11 @@ public class UpdateTask extends AppCompatActivity {
                     ed_update_cat.requestFocus();
                     return;
                 }
+                if (TextUtils.isEmpty(task_date)) {
+                    showErrorSnack("Please choose Task date");
+                    ed_update_date.requestFocus();
+                    return;
+                }
 
 
                 ContentValues values = new ContentValues();
@@ -106,6 +115,7 @@ public class UpdateTask extends AppCompatActivity {
                 values.put(TaskDatabase.COLUMN_NAME_COL2, task_time);
                 values.put(TaskDatabase.COLUMN_NAME_COL3, task_desc);
                 values.put(TaskDatabase.COLUMN_NAME_COL4, task_cat);
+                values.put(TaskDatabase.COLUMN_NAME_COL5, task_date);
                 int updateId = db.update(TaskDatabase.TABLE_NAME, values, TaskDatabase._ID + " = " + rowId, null);
                 if (updateId != -1) {
 

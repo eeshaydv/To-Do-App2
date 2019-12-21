@@ -3,7 +3,7 @@ package com.android.todoapp.model;
 public class TaskDetails {
 
     int taskId;
-    private String task_name, task_time, task_desc, task_cat;
+    private String task_name, task_time, task_desc, task_cat, task_date;
 
     public int getTaskId() {
         return taskId;
@@ -44,6 +44,14 @@ public class TaskDetails {
 
     public void setCat(String task_cat) {
         this.task_cat = task_cat;
+    }
+
+    public String getDate() {
+        return task_date;
+    }
+
+    public void setDate(String task_date) {
+        this.task_date = task_date;
     }
 
 }

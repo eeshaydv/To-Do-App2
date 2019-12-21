@@ -54,6 +54,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_time" />
 
+    <EditText
+        android:id="@+id/ed_date"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_cat" />
+
     <Button
         android:id="@+id/bt_add"
         android:layout_width="wrap_content"
@@ -67,5 +79,5 @@
         android:textColor="@color/cardview_light_background"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_cat" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_date" />
 </androidx.constraintlayout.widget.ConstraintLayout>

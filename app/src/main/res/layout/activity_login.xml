@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="New User?...Sign Up Here!"
-        android:textSize="25dp" />
+        android:textSize="15dp" />
 
 
 </LinearLayout>
