@@ -85,7 +85,11 @@ public class TaskCreate extends AppCompatActivity {
                 }
                 if (TextUtils.isEmpty(task_date)) {
                     showErrorSnack("Please choose Task date");
+
                     ed_date.requestFocus();
+
+                    ed_cat.requestFocus();
+
                     return;
                 }
 
@@ -95,7 +99,11 @@ public class TaskCreate extends AppCompatActivity {
                 values.put(TaskDatabase.COLUMN_NAME_COL2, task_time);
                 values.put(TaskDatabase.COLUMN_NAME_COL3, task_desc);
                 values.put(TaskDatabase.COLUMN_NAME_COL4, task_cat);
+
                 values.put(TaskDatabase.COLUMN_NAME_COL5, task_date);
+
+                values.put(TaskDatabase.COLUMN_NAME_COL4, task_date);
+
                 long rowId = db.insert(TaskDatabase.TABLE_NAME, null, values);
                 if (rowId != -1) {
                     Toast.makeText(TaskCreate.this, "Task Created succesfully", Toast.LENGTH_SHORT).show();

@@ -15,7 +15,11 @@ public class TaskDatabaseHelper extends SQLiteOpenHelper {
             TaskDatabase.COLUMN_NAME_COL1 + " text," +
             TaskDatabase.COLUMN_NAME_COL2 + " text," +
             TaskDatabase.COLUMN_NAME_COL3 + " text," +
+
             TaskDatabase.COLUMN_NAME_COL4 + " text," +
+
+            TaskDatabase.COLUMN_NAME_COL4 + " text," +
+
             TaskDatabase.COLUMN_NAME_COL5 + " text)";
     private static final String DELETE_USER_TABLE = "DROP TABLE IF EXISTS " + TaskDatabase.TABLE_NAME;
 

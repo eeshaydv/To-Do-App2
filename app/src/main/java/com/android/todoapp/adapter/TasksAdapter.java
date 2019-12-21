@@ -51,7 +51,11 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
         holder.task_time.setText(taskDetails.getTime());
         holder.task_desc.setText(taskDetails.getDesc());
         holder.task_cat.setText(taskDetails.getCat());
+
         holder.task_date.setText(taskDetails.getDate());
+
+        holder.task_date.setText(taskDetails.getCat());
+
 
         holder.ivMenu.setOnClickListener(new View.OnClickListener() {
             @Override
