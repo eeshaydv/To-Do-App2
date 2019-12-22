@@ -1,5 +1,6 @@
 package com.android.todoapp;
 
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -23,6 +25,8 @@ import com.android.todoapp.DataBase.TaskDatabaseContract.TaskDatabase;
 import com.android.todoapp.DataBase.TaskDatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Calendar;
+
 public class TaskCreate extends AppCompatActivity {
 
     TaskDatabaseHelper dbHelper;
@@ -30,6 +34,8 @@ public class TaskCreate extends AppCompatActivity {
     SQLiteDatabase db;
     private EditText ed_task, ed_time, ed_desc, ed_cat, ed_date;
     private Button bt_add;
+    Calendar calendar = Calendar.getInstance();
+    int chr, cmin, cdate, cmonth, cyear;
 
 
     @Override
@@ -53,18 +59,22 @@ public class TaskCreate extends AppCompatActivity {
             }
         });
 
+        ed_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(TaskCreate.this, t1, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+            }
+        });
+
         bt_add.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 task_name = ed_task.getText().toString();
-                task_time = ed_time.getText().toString();
+
                 task_desc = ed_desc.getText().toString();
 
                 task_date = ed_date.getText().toString();
-
-
-
 
 
                 if (TextUtils.isEmpty(task_name)) {
@@ -93,9 +103,6 @@ public class TaskCreate extends AppCompatActivity {
                     ed_date.requestFocus();
 
 
-
-
-
                     return;
                 }
 
@@ -107,9 +114,6 @@ public class TaskCreate extends AppCompatActivity {
                 values.put(TaskDatabase.COLUMN_NAME_COL4, task_cat);
 
                 values.put(TaskDatabase.COLUMN_NAME_COL5, task_date);
-
-
-
 
 
                 long rowId = db.insert(TaskDatabase.TABLE_NAME, null, values);
@@ -167,4 +171,18 @@ public class TaskCreate extends AppCompatActivity {
         view.setBackgroundColor(Color.parseColor("#075A90"));
         snackbar.show();
     }
+
+    TimePickerDialog.OnTimeSetListener t1 = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            chr = hourOfDay;
+            cmin = minute;
+            task_time = chr + ":" + cmin;
+
+            ed_time.setText("" + task_time);
+
+
+        }
+    };
+
 }
