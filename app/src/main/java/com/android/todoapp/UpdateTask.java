@@ -1,5 +1,7 @@
 package com.android.todoapp;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +14,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -24,6 +28,7 @@ import com.android.todoapp.model.TaskDetails;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class UpdateTask extends AppCompatActivity {
@@ -34,7 +39,8 @@ public class UpdateTask extends AppCompatActivity {
     List<TaskDetails> userDetailsList;
     String task_name, task_time, task_desc, task_cat, task_date;
     SQLiteDatabase db;
-
+    Calendar calendar = Calendar.getInstance();
+    int chr, cmin, cdate, cmonth, cyear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,20 @@ public class UpdateTask extends AppCompatActivity {
         ed_update_cat = findViewById(R.id.ed_update_cat);
 
         ed_update_date = findViewById(R.id.ed_update_date);
+
+        ed_update_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(UpdateTask.this, t1, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+            }
+        });
+
+        ed_update_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(UpdateTask.this, t2, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
 
 
@@ -165,7 +185,7 @@ public class UpdateTask extends AppCompatActivity {
 
                     ed_update_cat.setText(categoryNames[which]);
                     task_cat = categoryNames[which];
-                    //Log.e("djdjjd", "" + cat);
+
 
 
                 }
@@ -177,11 +197,37 @@ public class UpdateTask extends AppCompatActivity {
     }
 
     public void showErrorSnack(String msg) {
-        // TODO Auto-generated method stub
+
         final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
         Snackbar snackbar = Snackbar.make(viewGroup, Html.fromHtml("<b>" + msg + "</b>"), Snackbar.LENGTH_LONG);
         View view = snackbar.getView();
         view.setBackgroundColor(Color.parseColor("#075A90"));
         snackbar.show();
     }
+
+    TimePickerDialog.OnTimeSetListener t1 = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            chr = hourOfDay;
+            cmin = minute;
+            task_time = chr + ":" + cmin;
+
+            ed_update_time.setText("" + task_time);
+
+
+        }
+    };
+
+    DatePickerDialog.OnDateSetListener t2=new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            cyear=year;
+            cdate=dayOfMonth;
+            cmonth=month;
+            task_date=cdate+"-" +cmonth+" "+cdate;
+            ed_update_date.setText(""+task_date);
+        }
+    };
+
+
 }
