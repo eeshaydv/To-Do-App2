@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:hint="time"
+        android:focusable="false"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_update_desc" />
@@ -50,7 +51,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-
         android:focusable="false"
         android:hint="Category"
         android:inputType="textPersonName"
@@ -64,20 +64,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-
         android:ems="10"
-
         android:focusable="false"
         android:hint="Date"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_update_cat" />
-
-
-
-
-
-
     <EditText
         android:id="@+id/ed_update_task"
         android:layout_width="0dp"
