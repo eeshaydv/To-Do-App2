@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:hint="Password"
-        android:inputType="textEmailAddress" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/login_button"
@@ -47,10 +47,11 @@
         android:layout_gravity="center"
         android:text="New User?...Sign Up Here!"
         android:textSize="15dp" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/todo"/>
+        android:src="@drawable/todo" />
 
 
 </LinearLayout>
