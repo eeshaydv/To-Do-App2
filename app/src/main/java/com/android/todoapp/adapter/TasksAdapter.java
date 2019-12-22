@@ -1,6 +1,8 @@
 package com.android.todoapp.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -73,11 +75,28 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
                                 case R.id.delete:
-                                    db.delete(TaskDatabaseContract.TaskDatabase.TABLE_NAME, TaskDatabaseContract.TaskDatabase._ID + " = " + taskId, null);
-                                    notifyItemRangeChanged(position, taskDetailsList.size());
-                                    taskDetailsList.remove(position);
-                                    notifyItemRemoved(position);
-                                    db.close();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                    builder.setTitle("Exit");
+                                    builder.setIcon(R.mipmap.ic_launcher_round);
+                                    builder.setMessage("are you sure do you want to Delete the Task?");
+                                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            db.delete(TaskDatabaseContract.TaskDatabase.TABLE_NAME, TaskDatabaseContract.TaskDatabase._ID + " = " + taskId, null);
+                                            notifyItemRangeChanged(position, taskDetailsList.size());
+                                            taskDetailsList.remove(position);
+                                            notifyItemRemoved(position);
+                                            db.close();
+                                        }
+                                    });
+                                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    builder.create().show();
                                     break;
                                 case R.id.update:
                                     Intent intent = new Intent(context, UpdateTask.class);
