@@ -72,6 +72,10 @@ public class UpdateTask extends AppCompatActivity {
 
 
 
+
+
+
+
         btUpdate = findViewById(R.id.bt_update);
 
         final int rowId = getIntent().getIntExtra("USERID", -1);
@@ -102,66 +106,95 @@ public class UpdateTask extends AppCompatActivity {
         btUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                task_name = ed_update_task.getText().toString();
-                task_time = ed_update_time.getText().toString();
-                task_date = ed_update_desc.getText().toString();
-                task_desc = ed_update_desc.getText().toString();
-                task_date = ed_update_date.getText().toString();
-
-
-
-                if (TextUtils.isEmpty(task_name)) {
-                    showErrorSnack("Please enter task");
-                    ed_update_task.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(task_desc)) {
-                    showErrorSnack("Please enter task description");
-                    ed_update_desc.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(task_time)) {
-                    showErrorSnack("Please enter time");
-                    ed_update_time.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(task_cat)) {
-                    showErrorSnack("Please choose Task Category");
-                    ed_update_cat.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(task_date)) {
-
-                    showErrorSnack("Please choose Task date");
-
-
-                    ed_update_date.requestFocus();
-                    return;
-                }
-
-
-                ContentValues values = new ContentValues();
-                values.put(TaskDatabase.COLUMN_NAME_COL1, task_name);
-                values.put(TaskDatabase.COLUMN_NAME_COL2, task_time);
-                values.put(TaskDatabase.COLUMN_NAME_COL3, task_desc);
-                values.put(TaskDatabase.COLUMN_NAME_COL4, task_cat);
-                values.put(TaskDatabase.COLUMN_NAME_COL5, task_date);
-                int updateId = db.update(TaskDatabase.TABLE_NAME, values, TaskDatabase._ID + " = " + rowId, null);
-                if (updateId != -1) {
-
-                    Toast.makeText(UpdateTask.this, "Task Details Upated succesfully", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UpdateTask.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-
-                    Toast.makeText(UpdateTask.this, "Task Updation Failed", Toast.LENGTH_SHORT).show();
-
-                }
 
 
             }
         });
+
+
+      btUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(UpdateTask.this);
+                builder.setTitle("Exit");
+                builder.setIcon(R.mipmap.ic_launcher_round);
+                builder.setMessage("are you sure do you want to Update the task?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+
+                        task_name = ed_update_task.getText().toString();
+                        task_time = ed_update_time.getText().toString();
+                        task_date = ed_update_desc.getText().toString();
+                        task_desc = ed_update_desc.getText().toString();
+                        task_date = ed_update_date.getText().toString();
+
+
+
+                        if (TextUtils.isEmpty(task_name)) {
+                            showErrorSnack("Please enter task");
+                            ed_update_task.requestFocus();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(task_desc)) {
+                            showErrorSnack("Please enter task description");
+                            ed_update_desc.requestFocus();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(task_time)) {
+                            showErrorSnack("Please enter time");
+                            ed_update_time.requestFocus();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(task_cat)) {
+                            showErrorSnack("Please choose Task Category");
+                            ed_update_cat.requestFocus();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(task_date)) {
+
+                            showErrorSnack("Please choose Task date");
+
+
+                            ed_update_date.requestFocus();
+                            return;
+                        }
+
+
+                        ContentValues values = new ContentValues();
+                        values.put(TaskDatabase.COLUMN_NAME_COL1, task_name);
+                        values.put(TaskDatabase.COLUMN_NAME_COL2, task_time);
+                        values.put(TaskDatabase.COLUMN_NAME_COL3, task_desc);
+                        values.put(TaskDatabase.COLUMN_NAME_COL4, task_cat);
+                        values.put(TaskDatabase.COLUMN_NAME_COL5, task_date);
+                        int updateId = db.update(TaskDatabase.TABLE_NAME, values, TaskDatabase._ID + " = " + rowId, null);
+                        if (updateId != -1) {
+
+                            Toast.makeText(UpdateTask.this, "Task Details Upated succesfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UpdateTask.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+
+                            Toast.makeText(UpdateTask.this, "Task Updation Failed", Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+
+                    }
+                });
+                
+                builder.create().show();
+            }
+        });
+
+
+
+
+
 
     }
 
