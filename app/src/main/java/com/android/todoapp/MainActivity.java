@@ -1,5 +1,7 @@
 package com.android.todoapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -40,20 +42,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         taskDatabaseHelper = new TaskDatabaseHelper(MainActivity.this);
         db = taskDatabaseHelper.getReadableDatabase();
-
-
         log_out = findViewById(R.id.log_out);
+
         log_out.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("LogOut");
+                builder.setIcon(R.mipmap.ic_launcher_round);
+                builder.setMessage("Are you sure do you want to LogOut?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent I = new Intent(MainActivity.this,
+                                LoginActivity.class);
+                        startActivity(I);
 
-                FirebaseAuth.getInstance().signOut();
-                Intent I = new Intent(MainActivity.this,
-                        LoginActivity.class);
-                startActivity(I);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                    }
+                });
+                builder.create().show();
             }
         });
+
+
+
 
 
         recyclerView = findViewById(R.id.task_rv);
