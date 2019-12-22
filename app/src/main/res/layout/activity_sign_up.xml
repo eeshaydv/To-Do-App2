@@ -28,7 +28,7 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:hint="Password"
-        android:inputType="textEmailAddress" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/signup_button"
