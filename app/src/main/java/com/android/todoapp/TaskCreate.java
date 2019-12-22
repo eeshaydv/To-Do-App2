@@ -1,5 +1,6 @@
 package com.android.todoapp;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -13,6 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -62,9 +64,20 @@ public class TaskCreate extends AppCompatActivity {
         ed_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TimePickerDialog(TaskCreate.this, t1, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+                new TimePickerDialog(TaskCreate.this, t4, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
             }
         });
+
+        ed_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(TaskCreate.this, t3, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+
 
         bt_add.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -172,7 +185,7 @@ public class TaskCreate extends AppCompatActivity {
         snackbar.show();
     }
 
-    TimePickerDialog.OnTimeSetListener t1 = new TimePickerDialog.OnTimeSetListener() {
+    TimePickerDialog.OnTimeSetListener t4 = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             chr = hourOfDay;
@@ -184,5 +197,17 @@ public class TaskCreate extends AppCompatActivity {
 
         }
     };
+
+    DatePickerDialog.OnDateSetListener t3=new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            cyear=year;
+            cdate=dayOfMonth;
+            cmonth=month;
+            task_date=cdate+"-" +cmonth+" "+cdate;
+            ed_date.setText(""+task_date);
+        }
+    };
+
 
 }
